@@ -1,0 +1,70 @@
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+  - name: install cli packages
+    package:
+      name: 
+        - bpytop
+        - tmux
+        - vim-nox
+
+  - name: zshrc
+    copy:
+      src: files/zshrc
+      dest: /home/nick/.zshrc
+      owner: nick
+      group: nick
+      mode: "0775"
+  
+  - name: vimrc  
+    copy:
+      src: files/vimrc
+      dest: /home/nick/.vimrc
+      owner: nick
+      group: nick
+      mode: "0775"
+
+  - name: Clone ohmyzsh
+    become_user: nick
+    git:
+      repo: https://github.com/ohmyzsh/ohmyzsh.git
+      dest: /home/nick/.oh-my-zsh
+      single_branch: yes
+      version: main
+
+  - name: clone zsh-autosuggestions  
+    git:
+      repo: https://github.com/zsh-users/zsh-autosuggestions.git
+      dest: /home/nick/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+      single_branch: yes
+      version: main
+      #update: yes
+  
+  - name: clone zsh-syntax-highlighting
+    git:
+      repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+      dest: /home/nick/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+      single_branch: yes
+      version: main
+      
+  - name: add ansible user
+    user:
+      name: ansibleuser
+      system: yes
+
+  - name: set up sudo for ansible user
+    copy:
+      src: files/sudoer_ansibleuser
+      dest: /etc/sudoers.d/ansibleuser
+      owner: root
+      group: root
+      mode: 0440
+
+  - name: add ansible-pull cron job
+    cron:
+      name: ansible auto-provision
+      user: ansibleuser
+      minute: "*/10"
+      job: ansible-pull -o -U https://github.com/crowsnesttech/ansible-desktop.git
