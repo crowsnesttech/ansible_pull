@@ -136,22 +136,22 @@
   #     single_branch: yes
   #     version: main
       
-  - name: add ansible user
-    user:
-      name: ansibleuser
-      system: yes
+  # - name: add ansible user
+  #   user:
+  #     name: ansibleuser
+  #     system: yes
 
-  - name: set up sudo for ansible user
-    copy:
-      src: files/sudoer_ansibleuser
-      dest: /etc/sudoers.d/ansibleuser
-      owner: root
-      group: root
-      mode: 0440
+  # - name: set up sudo for ansible user
+  #   copy:
+  #     src: files/sudoer_ansibleuser
+  #     dest: /etc/sudoers.d/ansibleuser
+  #     owner: root
+  #     group: root
+  #     mode: 0440
 
-  - name: add ansible-pull cron job
-    cron:
-      name: ansible auto-provision
-      user: ansibleuser
-      minute: "*/10"
-      job: ansible-pull -o -U https://github.com/crowsnesttech/ansible-desktop.git
+  # - name: add ansible-pull cron job
+  #   cron:
+  #     name: ansible auto-provision
+  #     user: ansibleuser
+  #     minute: "*/10"
+  #     job: ansible-pull -o -U https://github.com/crowsnesttech/ansible-desktop.git
