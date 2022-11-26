@@ -89,12 +89,12 @@
       group: nick
       mode: '755'
 
-  - name: Change user Shell to ZSH 
-    become: yes
-    user:
-      name: nick
-      shell: /bin/zsh
-    changed_when: false
+  # - name: Change user Shell to ZSH 
+  #   become: yes
+  #   user:
+  #     name: nick
+  #     shell: /bin/zsh
+  #   changed_when: false
 
   # - name: zshrc
   #   copy:
