@@ -124,4 +124,4 @@
       name: ansible auto-provision
       user: ansibleuser
       minute: "*/10"
-      job: ansible-pull -o -U https://github.com/crowsnesttech/ansible-pull.git
+      job: ansible-pull -o -U https://github.com/crowsnesttech/ansible_pull.git
