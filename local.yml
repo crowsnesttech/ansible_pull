@@ -12,6 +12,7 @@
         - htop
         - git
         - cowsay
+        - iperf3
 
   - name: Clone linux-dotfiles
     become_user: nick
