@@ -6,9 +6,8 @@
   - name: install cli packages
     package:
       name: 
-        - bpytop
-        - tmux
-        - vim-nox
+        - htop
+        - git
 
   - name: Clone linux-dotfiles
     become_user: nick
