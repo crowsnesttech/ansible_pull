@@ -11,6 +11,7 @@
         - zsh-syntax-highlighting
         - htop
         - git
+        - cowsay
 
   - name: Clone linux-dotfiles
     become_user: nick
