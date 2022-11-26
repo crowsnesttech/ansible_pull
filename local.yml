@@ -6,6 +6,9 @@
   - name: install cli packages
     package:
       name: 
+        - zsh
+        - zsh-autosuggestions
+        - zsh-syntax-highlighting
         - htop
         - git
 
